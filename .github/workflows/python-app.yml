@@ -1,4 +1,4 @@
-"name: CLEAR OLD BRANCHES
+name: CLEAR OLD BRANCHES
 
 on:
   schedule:
