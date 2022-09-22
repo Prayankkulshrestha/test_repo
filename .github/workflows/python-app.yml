@@ -1,9 +1,9 @@
 name: CLEAR OLD BRANCHES
 
-# on:
+on:
 #  schedule:
 #    - cron: "*/5 * * * *"
-#  workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   cleaning:
@@ -12,12 +12,15 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+      - name: Mark github workspace as safe
+        run: |
+          git config --global --add safe.directory /github/workspace
       - name: clean
         uses: beatlabs/delete-old-branches-action@v0.0.6
         with:
           repo_token: ${{ secrets.GH_TOKEN }}
           date: '1 days ago'
-          dry_run: false
-          delete_tags: false
+          dry_run: true
+          delete_tags: true
           minimum_tags: 5
           extra_protected_branch_regex: master.*|main|develop|^release.*|.*_p$
