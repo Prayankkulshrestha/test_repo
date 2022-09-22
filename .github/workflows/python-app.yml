@@ -16,7 +16,7 @@ jobs:
         run: |
           git config --global --add safe.directory /github/workspace
       - name: clean
-        uses: beatlabs/delete-old-branches-action@v0.0.6
+        uses: beatlabs/delete-old-branches-action@v0.0.9
         with:
           repo_token: ${{ secrets.GH_TOKEN }}
           date: '1 days ago'
